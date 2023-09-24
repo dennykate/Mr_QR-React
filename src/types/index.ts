@@ -47,5 +47,14 @@ export interface AuthFormTypes {
 }
 
 export interface AuthLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
+}
+
+export interface QrCardTypes {
+  qrCode: string;
+  value: string;
+  name: string;
+  key: string;
+  created_at: Date;
+  created_by: string;
 }

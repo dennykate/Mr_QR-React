@@ -3,7 +3,6 @@ import { createStyles } from "@mantine/core";
 import { Footer } from ".";
 import { LayoutProps } from "../types";
 
-
 const useStyles = createStyles((theme) => ({
   wrapper: {
     width: "100%",
@@ -11,6 +10,8 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[6] : "#F8F6F4",
   },
   children: {
     width: "100%",
@@ -31,7 +32,6 @@ const Layout = ({ children }: LayoutProps) => {
       <div className={classes.footer}>
         <Footer />
       </div>
-      
     </div>
   );
 };

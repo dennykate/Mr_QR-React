@@ -3,6 +3,8 @@ import { Button, createStyles } from "@mantine/core";
 
 import { QrUpload } from ".";
 import { dummyQrCode } from "../constants";
+import { QrCardTypes } from "../types";
+import { dateToFormat } from "../libs/functions";
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -51,19 +53,21 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const QrCard = () => {
+const QrCard = ({ data }: { data: QrCardTypes }) => {
   const { classes } = useStyles();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (
     <div className={classes.container}>
       <div className={classes.imgContainer}>
-        <img className={classes.img} src={dummyQrCode} alt="qr-code" />
+        <img className={classes.img} src={data.qrCode} alt="qr-code" />
       </div>
       <div className={classes.contentContainer}>
         <div>
-          <h5 className={classes.name}>My Facebook Profile Url</h5>
-          <h6 className={classes.date}>11:11 AM 9/16/2023</h6>
+          <h5 className={classes.name}>{data.name}</h5>
+          <h6 className={classes.date}>
+            {dateToFormat(data.created_at.toString())}
+          </h6>
         </div>
         <Button onClick={() => setOpenModal(true)} fullWidth>
           Save & Download
@@ -71,7 +75,7 @@ const QrCard = () => {
       </div>
 
       <QrUpload
-        upload={{ isLoading: false, isSuccess: true, qrCode: dummyQrCode }}
+        upload={{ isLoading: false, isSuccess: true, qrCode: data.qrCode }}
         openModal={openModal}
         setOpenModal={setOpenModal}
       />

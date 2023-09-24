@@ -63,7 +63,7 @@ const QrUpload = ({ upload, openModal, setOpenModal }: QrUploadProps) => {
   const { classes } = useStyles();
 
   useEffect(() => {
-    if (!upload.isSuccess) onCloseHandler();
+    if (!upload.isLoading && !upload.isSuccess) onCloseHandler();
   }, [upload]);
 
   const onCloseHandler = () => {
@@ -94,10 +94,10 @@ const QrUpload = ({ upload, openModal, setOpenModal }: QrUploadProps) => {
       }}
     >
       <div className={classes.wrapper}>
-        {upload.isLoading ? (
-          <Loading />
-        ) : (
+        {upload.isSuccess ? (
           <img src={upload.qrCode} className={classes.qrBox} />
+        ) : (
+          <Loading />
         )}
 
         {upload.isSuccess && (

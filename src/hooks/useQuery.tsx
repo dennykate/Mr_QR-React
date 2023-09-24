@@ -19,6 +19,7 @@ export default () => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   const base = async (func: () => Promise<AxiosResponse<any, any>>) => {
+    setIsSuccess(false);
     try {
       setIsLoading(true);
       const { data }: any = await func();

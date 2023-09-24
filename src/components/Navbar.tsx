@@ -1,6 +1,6 @@
 import { Button, Input, createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
-import { IconSearch } from "@tabler/icons-react";
+import { IconLogout, IconSearch } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -37,6 +37,9 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  button: {
+    
+  }
 }));
 
 const Navbar = () => {
@@ -59,7 +62,12 @@ const Navbar = () => {
               </Button>
             }
           />
-          <Button size="sm">Get Mobile App</Button>
+          <Button size="sm" mr={5}>
+            Get Mobile App
+          </Button>
+          <button className={classes.button}>
+            <IconLogout size={18} />
+          </button>
         </div>
       </div>
     </div>

@@ -1,7 +1,5 @@
 import { createStyles } from "@mantine/core";
 import { Footer, Navbar, QrCardContainer } from "../components";
-import useQuery from "../hooks/useQuery";
-import { useEffect } from "react";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -13,17 +11,6 @@ const useStyles = createStyles((theme) => ({
 
 const Dashboard = () => {
   const { classes } = useStyles();
-  const { query } = useQuery();
-
-  useEffect(() => {
-    getQrData();
-  }, []);
-
-  const getQrData = async () => {
-    const data = await query("/qr");
-
-   
-  };
 
   return (
     <div className={classes.wrapper}>

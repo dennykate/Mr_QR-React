@@ -4,14 +4,12 @@ import {
   Box,
   Button,
   FileInput,
-  Input,
   Select,
   TextInput,
   Title,
   createStyles,
 } from "@mantine/core";
 import QRCode from "react-qr-code";
-import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 import config from "../constants/config";
@@ -124,18 +122,21 @@ const QrBox = () => {
   };
 
   const onSelectHandler = (e: string) => {
-    setQrCode("");
     setType(e);
+    setQrCode("");
+    setLoading(false);
   };
 
   const onFileChangeHandler = (e: File) => {
-    setQrCode("");
     setFile(e);
+    setQrCode("");
+    setLoading(false);
   };
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQrCode("");
     setInput(e.target.value);
+    setQrCode("");
+    setLoading(false);
   };
 
   return (
