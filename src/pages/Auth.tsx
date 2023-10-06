@@ -19,9 +19,9 @@ const useStyles = createStyles((theme) => ({
 
 const Auth = () => {
   const { classes } = useStyles();
-  const token = JSON.parse(Cookies.get("token") ?? "{}");
+  const token = Cookies.get("token");
 
-  if (token?.access_token) return <Navigate to="/" />;
+  if (token) return <Navigate to="/" />;
   else
     return (
       <Layout>

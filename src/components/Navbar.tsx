@@ -1,5 +1,6 @@
 import { Button, Input, createStyles } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import { IconLogout, IconSearch } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -37,13 +38,18 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
-  button: {
-    
-  }
 }));
 
 const Navbar = () => {
   const { classes } = useStyles();
+  const navigate = useNavigate();
+
+  const onLogoutHandler = () => {
+    Cookies.remove("token");
+    Cookies.remove("is_verified");
+
+    navigate("/");
+  };
 
   return (
     <div className={classes.wrapper}>
@@ -65,9 +71,9 @@ const Navbar = () => {
           <Button size="sm" mr={5}>
             Get Mobile App
           </Button>
-          <button className={classes.button}>
+          <Button color="red" onClick={onLogoutHandler}>
             <IconLogout size={18} />
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -27,3 +27,9 @@ export const dateToFormat = (dateString: string) => {
 
   return formattedDate;
 };
+
+export const isValidEmail = (email: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  return emailRegex.test(email);
+};

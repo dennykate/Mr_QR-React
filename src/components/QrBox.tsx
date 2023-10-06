@@ -69,7 +69,7 @@ const QrBox = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [qrImage, setQrImage] = useState<string>("");
-  const token = useAccessToken();
+  const { token } = useAccessToken();
 
   const { isLoading, isSuccess, mutate } = useQuery();
 

@@ -13,6 +13,7 @@ import {
   Anchor,
   Stack,
   createStyles,
+  Divider,
 } from "@mantine/core";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -21,6 +22,7 @@ import { IconLoader2 } from "@tabler/icons-react";
 
 import { AuthFormTypes, AuthInfos } from "../types";
 import useQuery from "../hooks/useQuery";
+import { GoogleButton } from ".";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -90,7 +92,8 @@ export default function AuthForm(props: PaperProps) {
         toast.success("Login Successful");
 
         setTimeout(() => {
-          Cookies.set("token", JSON.stringify(user));
+          Cookies.set("token", user.access_token);
+          Cookies.set("is_verified", user.is_verified);
           navigate("/");
         }, 3000);
       }
@@ -102,6 +105,13 @@ export default function AuthForm(props: PaperProps) {
       <Text size="lg" weight={500} mb={20}>
         Welcome to Mr.Qr, {type} with
       </Text>
+
+      <Group grow mb="md" mt="md">
+        <GoogleButton radius="xl">Google</GoogleButton>
+        <GoogleButton radius="xl">Google</GoogleButton>
+      </Group>
+
+      <Divider label="Or continue with email" labelPosition="center" my="lg" />
 
       <form
         onSubmit={form.onSubmit((values: AuthFormTypes) =>

@@ -1,13 +1,15 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-import { AuthLayoutProps } from "../types";
+import { AccessToken, AuthLayoutProps } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
-  const token = useAccessToken();
-  console.log(token);
+  const { token, is_verified }: AccessToken = useAccessToken();
+
+  console.log({ token, is_verified });
 
   if (!token) return <Navigate to="/auth" />;
+  else if (!is_verified) return <Navigate to="/verify" />;
   else return children;
 };
 

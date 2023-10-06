@@ -22,3 +22,26 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.title {
+  font-size: rem(26px);
+  font-weight: 900;
+  font-family: Greycliff CF, var(--mantine-font-family);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  @media (max-width: 30em) {
+    flex-direction: column-reverse;
+  }
+}
+
+.control {
+  @media (max-width: 30em) {
+    width: 100%;
+    text-align: center;
+  }
+}

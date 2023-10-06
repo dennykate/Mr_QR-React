@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import Layout from "./Layout";
 import AuthForm from "./AuthForm";
 import AuthLayout from "./AuthLayout";
+import GoogleButton from "./GoogleButton";
+import VerificationForm from "./VerificationForm";
 
 export {
   QrBox,
@@ -22,4 +24,6 @@ export {
   Layout,
   AuthForm,
   AuthLayout,
+  GoogleButton,
+  VerificationForm,
 };

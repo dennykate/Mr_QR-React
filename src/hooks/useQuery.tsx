@@ -9,7 +9,13 @@ import axios, {
 } from "axios";
 
 import config from "../constants/config";
-import { AuthInfos, UploadBody } from "../types";
+import {
+  AuthInfos,
+  AuthInputProps,
+  EmailVerifyTypes,
+  GoogleAuthTypes,
+  UploadBody,
+} from "../types";
 import useAccessToken from "./useAccessToken";
 import { useNavigate } from "react-router-dom";
 
@@ -30,6 +36,8 @@ export default () => {
       setIsLoading(false);
       return data?.data;
     } catch (err: any) {
+      console.log(err);
+
       if (err.response.data.message == "Token error") {
         toast.error("Token Expired");
         Cookies.remove("token");
@@ -45,7 +53,12 @@ export default () => {
 
   const mutate = async (
     uri: string,
-    body: UploadBody | AuthInfos,
+    body:
+      | UploadBody
+      | AuthInfos
+      | GoogleAuthTypes
+      | AuthInputProps
+      | EmailVerifyTypes,
     headers?: RawAxiosRequestHeaders
   ) => {
     return await base(() =>
@@ -56,7 +69,7 @@ export default () => {
   };
 
   const query = async (uri: string) => {
-    const token = useAccessToken();
+    const { token } = useAccessToken();
     return await base(() =>
       axios.get(config.baseApiUrl + uri, {
         headers: {

@@ -58,3 +58,20 @@ export interface QrCardTypes {
   created_at: Date;
   created_by: string;
 }
+
+export interface GoogleAuthTypes {
+  access_token: string;
+}
+
+export interface AccessToken {
+  token: string | undefined;
+  is_verified: boolean | undefined;
+}
+
+export interface AuthInputProps {
+  email?: string;
+}
+
+export interface EmailVerifyTypes {
+  code: string;
+}
