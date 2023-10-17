@@ -32,7 +32,7 @@ export default function VerificationForm() {
   const [code, setCode] = useState<string>("");
 
   const { mutate, isLoading } = useQuery();
-  const { phone, setPhone, onCaptchVerify, onOTPVerify } = usePhoneAuth();
+  const { phone, setPhone, onSignup, onOTPVerify, loading } = usePhoneAuth();
 
   const onClickHandler = async () => {
     if (type == "email") await sendCodeToEmail();
@@ -55,14 +55,12 @@ export default function VerificationForm() {
   const sendCodeToPhone = () => {
     if (phone == "") return toast.error("Phone is required");
 
-    console.log("first step");
-
-    onCaptchVerify();
+    onSignup();
   };
 
   const onVerifyHandler = async () => {
     if (type == "email") await verifyWithEmail();
-    // else
+    else await verifyWithPhone();
   };
 
   const verifyWithEmail = async () => {
@@ -79,6 +77,14 @@ export default function VerificationForm() {
       Cookies.set("is_verified", "true");
       setTimeout(() => navigate("/"), 1000);
     }
+  };
+
+  const verifyWithPhone = async () => {
+    if (code.length < 6) return toast.error("Code must be 6 characters");
+    if (typeof parseInt(code) != "number")
+      return toast.error("Code must be number ");
+
+    onOTPVerify(code);
   };
 
   return (
@@ -117,11 +123,11 @@ export default function VerificationForm() {
           )}
 
           <Button
-            disabled={isLoading && !opened}
+            disabled={(isLoading || loading) && !opened}
             radius={0}
             onClick={onClickHandler}
           >
-            {isLoading && !opened ? (
+            {(isLoading || loading) && !opened ? (
               <IconLoader2 className="spinner" size={16} />
             ) : (
               "Get Code"
@@ -175,7 +181,11 @@ export default function VerificationForm() {
           size="lg"
           onClick={onVerifyHandler}
         >
-          {isLoading ? <IconLoader2 className="spinner" size={16} /> : "Verify"}
+          {isLoading || loading ? (
+            <IconLoader2 className="spinner" size={16} />
+          ) : (
+            "Verify"
+          )}
         </Button>
       </Modal>
     </Container>

@@ -4,4 +4,5 @@ export default {
   View: "/view",
   Auth: "/auth",
   Verify: "/verify",
+  Test: "/test",
 };

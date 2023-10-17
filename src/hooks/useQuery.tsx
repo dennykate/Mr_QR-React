@@ -24,7 +24,10 @@ export default () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-  const base = async (func: () => Promise<AxiosResponse<any, any>>) => {
+  const base = async (
+    func: () => Promise<AxiosResponse<any, any>>,
+    getTotal: boolean = false
+  ) => {
     setIsSuccess(false);
     try {
       setIsLoading(true);
@@ -34,6 +37,9 @@ export default () => {
         setIsSuccess(true);
       }
       setIsLoading(false);
+
+      if (getTotal) return data;
+
       return data?.data;
     } catch (err: any) {
       console.log(err);
@@ -68,14 +74,16 @@ export default () => {
     );
   };
 
-  const query = async (uri: string) => {
+  const query = async (uri: string, getTotal: boolean = false) => {
     const { token } = useAccessToken();
-    return await base(() =>
-      axios.get(config.baseApiUrl + uri, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    return await base(
+      () =>
+        axios.get(config.baseApiUrl + uri, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+      getTotal
     );
   };
 

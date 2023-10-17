@@ -78,7 +78,7 @@ const QrBox = () => {
 
     const body = {
       svg: new XMLSerializer().serializeToString(svgRef.current),
-      value: fileValue ?? qrCode,
+      value: qrCode,
       key: key,
       name: name,
     };
@@ -117,7 +117,7 @@ const QrBox = () => {
 
     setKey(_key);
     setFileValue(responseFile);
-    setQrCode(createQrUrl(_key, file.type));
+    setQrCode(responseFile);
     setLoading(false);
   };
 

@@ -8,6 +8,7 @@ const Dashboard = lazy(() => import("../pages/Dashboard"));
 const View = lazy(() => import("../pages/View"));
 const Auth = lazy(() => import("../pages/Auth"));
 const Verify = lazy(() => import("../pages/Verify"));
+const Test = lazy(() => import("../pages/Test"));
 
 export default createBrowserRouter([
   {
@@ -51,8 +52,16 @@ export default createBrowserRouter([
   {
     path: path.Verify,
     element: (
+      // <Suspense fallback={<Loading />}>
+      <Verify />
+      // </Suspense>
+    ),
+  },
+  {
+    path: path.Test,
+    element: (
       <Suspense fallback={<Loading />}>
-        <Verify />
+        <Test />
       </Suspense>
     ),
   },

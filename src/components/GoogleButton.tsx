@@ -18,8 +18,8 @@ export default function GoogleButton(
 
       if (user) {
         console.log(user);
-        Cookies.set("token", JSON.stringify(user.access_token));
-        Cookies.set("is_verified", JSON.stringify(user.is_verified));
+        Cookies.set("token", user.access_token);
+        Cookies.set("is_verified", user.is_verified);
         navigate("/");
       }
     },

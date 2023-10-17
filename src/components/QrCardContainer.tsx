@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid, createStyles } from "@mantine/core";
 
-import { QrCard } from ".";
+import { QrCard, QrFooter } from ".";
 import useQuery from "../hooks/useQuery";
 import { QrCardTypes } from "../types";
 
@@ -16,17 +16,22 @@ const useStyles = createStyles(() => ({
 const QrCardContainer = () => {
   const { classes } = useStyles();
   const [data, setData] = useState<QrCardTypes[]>([]);
+  const [total, setTotal] = useState<number>(0);
 
   const { query } = useQuery();
 
   useEffect(() => {
-    getQrData();
+    getQrData(1);
   }, []);
 
-  const getQrData = async () => {
-    const { data } = await query("/qr");
+  const getQrData = async (page: number) => {
+    const data = await query(`/qr?page=${page}`);
 
-    setData(data);
+    setTotal(data.total);
+    setData((prev) => {
+      console.log(prev);
+      return [...prev, ...data.data]
+    });
   };
 
   return (
@@ -38,6 +43,8 @@ const QrCardContainer = () => {
           </Grid.Col>
         ))}
       </Grid>
+
+      {data.length < total && <QrFooter getQrData={getQrData} />}
     </div>
   );
 };

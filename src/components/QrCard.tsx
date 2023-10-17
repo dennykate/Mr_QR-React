@@ -60,13 +60,13 @@ const QrCard = ({ data }: { data: QrCardTypes }) => {
   return (
     <div className={classes.container}>
       <div className={classes.imgContainer}>
-        <img className={classes.img} src={data.qrCode} alt="qr-code" />
+        <img className={classes.img} src={data?.qrCode} alt="qr-code" />
       </div>
       <div className={classes.contentContainer}>
         <div>
-          <h5 className={classes.name}>{data.name}</h5>
+          <h5 className={classes.name}>{data?.name}</h5>
           <h6 className={classes.date}>
-            {dateToFormat(data.created_at.toString())}
+            {dateToFormat(data?.created_at.toString())}
           </h6>
         </div>
         <Button onClick={() => setOpenModal(true)} fullWidth>
@@ -75,7 +75,7 @@ const QrCard = ({ data }: { data: QrCardTypes }) => {
       </div>
 
       <QrUpload
-        upload={{ isLoading: false, isSuccess: true, qrCode: data.qrCode }}
+        upload={{ isLoading: false, isSuccess: true, qrCode: data?.qrCode }}
         openModal={openModal}
         setOpenModal={setOpenModal}
       />

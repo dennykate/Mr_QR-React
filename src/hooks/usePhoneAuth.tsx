@@ -1,29 +1,40 @@
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { auth } from "../firebase/config";
-import { toast } from "react-toastify";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import Cookies from "js-cookie";
+
+import useQuery from "./useQuery";
+import { auth } from "../firebase/config";
+import useAccessToken from "./useAccessToken";
+import { useNavigate } from "react-router-dom";
+
+declare const window: any;
 
 export default () => {
+  const { token } = useAccessToken();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [phone, setPhone] = useState<string>("");
-  const [windowRecaptcha, setWindowRecaptcha] = useState<any>();
+  const { mutate } = useQuery();
 
   function onCaptchVerify() {
-    if (windowRecaptcha) {
-      const recaptchaVerifier = new RecaptchaVerifier(
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
         "recaptcha-container",
         {
-          size: "normal",
+          size: "invisible",
           callback: (response: any) => {
-            console.log(response);
             onSignup();
           },
-          "expired-callback": () => {},
+          onAbort: (res: any) => {
+            console.log(res);
+          },
+          "expired-callback": () => {
+            setLoading(false);
+          },
         },
         auth
       );
-
-      setWindowRecaptcha(recaptchaVerifier);
     }
   }
 
@@ -31,13 +42,13 @@ export default () => {
     setLoading(true);
     onCaptchVerify();
 
-    const appVerifier = windowRecaptcha;
+    const appVerifier = window.recaptchaVerifier;
 
     const formatPh = "+" + phone;
 
     signInWithPhoneNumber(auth, formatPh, appVerifier)
       .then((confirmationResult) => {
-        windowRecaptcha.confirmationResult = confirmationResult;
+        window.confirmationResult = confirmationResult;
         setLoading(false);
         toast.success("OTP sended successfully!");
       })
@@ -49,17 +60,27 @@ export default () => {
 
   function onOTPVerify(otp: string) {
     setLoading(true);
-    windowRecaptcha.confirmationResult
+    window.confirmationResult
       .confirm(otp)
       .then(async (res: any) => {
-        console.log(res);
-        setLoading(false);
+        const { message } = await mutate(
+          "/user/phone-verify",
+          { code: res.localId },
+          { Authorization: `Bearer ${token}` }
+        );
+
+        if (message) {
+          toast.success(message);
+          setLoading(false);
+          Cookies.set("is_verified", "true");
+          setTimeout(() => navigate("/"), 1000);
+        }
       })
       .catch((err: any) => {
-        console.log(err);
+        toast.error("Invalid Code");
         setLoading(false);
       });
   }
 
-  return { phone, setPhone, onCaptchVerify, onOTPVerify, loading };
+  return { phone, setPhone, onSignup, onOTPVerify, loading };
 };

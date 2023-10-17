@@ -1,7 +1,6 @@
 import config from "../constants/config";
 
 export const createQrUrl = (url: string, type: string) => {
-  let _type;
 
   return config.createUrlPrefix + url + `&type=${type}`;
 };
