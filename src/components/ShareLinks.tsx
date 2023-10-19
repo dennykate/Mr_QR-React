@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Input, createStyles } from "@mantine/core";
 
 import { shareButtons } from "../constants";
 import { ShareLinksProps } from "../types";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   wrapper: {
     width: "100%",
     padding: "12px 0px",

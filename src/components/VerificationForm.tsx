@@ -9,7 +9,7 @@ import {
   Anchor,
   Modal,
 } from "@mantine/core";
-import { upperFirst, useDisclosure, useToggle } from "@mantine/hooks";
+import { useDisclosure, useToggle } from "@mantine/hooks";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import OtpInput from "react-otp-input";

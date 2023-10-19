@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import {
@@ -108,7 +107,6 @@ export default function AuthForm(props: PaperProps) {
 
       <Group grow mb="md" mt="md">
         <GoogleButton radius="xl">Google</GoogleButton>
-        {/* <GoogleButton radius="xl">Google</GoogleButton> */}
       </Group>
 
       <Divider label="Or continue with email" labelPosition="center" my="lg" />

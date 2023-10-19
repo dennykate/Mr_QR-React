@@ -11,7 +11,7 @@ import {
 import { QrUploadProps } from "../types";
 import { Loading, ShareLinks } from ".";
 import { toast } from "react-toastify";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   modal: {

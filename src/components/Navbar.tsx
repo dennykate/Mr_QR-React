@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { IconLogout, IconSearch } from "@tabler/icons-react";
 import Logo from "../assets/logo.jpg";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   wrapper: {
     width: "100%",
     height: 70,

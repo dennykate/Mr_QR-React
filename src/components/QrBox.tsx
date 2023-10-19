@@ -77,7 +77,6 @@ const QrBox = () => {
   const [name, setName] = useState<string>("");
   const [qrCode, setQrCode] = useState<string>("");
   const [key, setKey] = useState<string>("");
-  const [fileValue, setFileValue] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [qrImage, setQrImage] = useState<string>("");
@@ -128,7 +127,6 @@ const QrBox = () => {
     const _key = uuidv4().substring(0, 8);
 
     setKey(_key);
-    setFileValue(responseFile);
     setQrCode(responseFile);
     setLoading(false);
   };

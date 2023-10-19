@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Button, createStyles } from "@mantine/core";
 
 import { QrUpload } from ".";
-import { dummyQrCode } from "../constants";
 import { QrCardTypes } from "../types";
 import { dateToFormat } from "../libs/functions";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   container: {
     width: "100%",
     padding: 12,

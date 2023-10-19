@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { AccessToken, AuthLayoutProps } from "../types";
 import useAccessToken from "../hooks/useAccessToken";

@@ -1,7 +1,7 @@
 import { createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   container: {
     width: "100%",
     height: 50,
