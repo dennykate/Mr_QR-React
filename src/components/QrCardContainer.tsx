@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid, createStyles } from "@mantine/core";
 
-import { QrCard, QrFooter } from ".";
+import { EmptyQrCode, QrCard, QrFooter } from ".";
 import useQuery from "../hooks/useQuery";
 import { QrCardTypes } from "../types";
 
@@ -42,6 +42,8 @@ const QrCardContainer = () => {
           </Grid.Col>
         ))}
       </Grid>
+
+      {data.length == 0 && <EmptyQrCode />}
 
       {data.length < total && <QrFooter getQrData={getQrData} />}
     </div>

@@ -12,6 +12,7 @@ import AuthLayout from "./AuthLayout";
 import GoogleButton from "./GoogleButton";
 import VerificationForm from "./VerificationForm";
 import QrFooter from "./QrFooter";
+import EmptyQrCode from "./EmptyQrCode";
 
 export {
   QrBox,
@@ -28,4 +29,5 @@ export {
   GoogleButton,
   VerificationForm,
   QrFooter,
+  EmptyQrCode,
 };
