@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import axios, {
-  AxiosHeaderValue,
-  AxiosHeaders,
-  AxiosResponse,
-  RawAxiosRequestHeaders,
-} from "axios";
+import axios, { AxiosResponse, RawAxiosRequestHeaders } from "axios";
 
 import config from "../constants/config";
 import {

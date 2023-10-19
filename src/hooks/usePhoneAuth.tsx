@@ -23,7 +23,7 @@ export default () => {
         "recaptcha-container",
         {
           size: "invisible",
-          callback: (response: any) => {
+          callback: () => {
             onSignup();
           },
           onAbort: (res: any) => {
@@ -76,7 +76,7 @@ export default () => {
           setTimeout(() => navigate("/"), 1000);
         }
       })
-      .catch((err: any) => {
+      .catch(() => {
         toast.error("Invalid Code");
         setLoading(false);
       });
