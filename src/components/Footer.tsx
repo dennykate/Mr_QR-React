@@ -10,6 +10,14 @@ const useStyles = createStyles(() => ({
     alignItems: "center",
     background: "white",
   },
+  text: {
+    fontSize: 18,
+    textAlign: "center",
+
+    "@media (max-width: 500px)": {
+      fontSize: 12,
+    },
+  },
 }));
 
 const Footer = () => {
@@ -17,7 +25,7 @@ const Footer = () => {
 
   return (
     <div className={classes.container}>
-      <p style={{ textAlign: "center" }}>
+      <p className={classes.text}>
         Developed by <Link to="https://github.com/dennykate">Denny Kate</Link> &{" "}
         <Link to="https://github.com/eiThwe">Thwe Thwe</Link> © 2023 Mr.QR
       </p>
