@@ -1,7 +1,10 @@
+import Cookies from "js-cookie";
 import { Button, Input, createStyles } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+
 import { IconLogout, IconSearch } from "@tabler/icons-react";
+import Logo from "../assets/logo.jpg";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -19,10 +22,14 @@ const useStyles = createStyles((theme) => ({
     padding: "0 10px",
   },
   logoContainer: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 70,
     borderRadius: 40,
-    background: "red",
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   },
   inputContainer: {
     display: "flex",
@@ -55,7 +62,9 @@ const Navbar = () => {
     <div className={classes.wrapper}>
       <div className={classes.container}>
         <Link to="/">
-          <div className={classes.logoContainer}></div>
+          <div className={classes.logoContainer}>
+            <img src={Logo} alt="logo" className={classes.logo} />
+          </div>
         </Link>
 
         <div className={classes.inputContainer}>
@@ -68,7 +77,7 @@ const Navbar = () => {
               </Button>
             }
           />
-          <Button size="sm" mr={5}>
+          <Button onClick={() => toast.error("Unavailable")} size="sm" mr={5}>
             Get Mobile App
           </Button>
           <Button color="red" onClick={onLogoutHandler}>

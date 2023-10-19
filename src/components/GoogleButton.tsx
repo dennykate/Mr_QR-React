@@ -28,6 +28,7 @@ export default function GoogleButton(
   return (
     <Button
       leftIcon={<GoogleIcon />}
+      h={40}
       variant="default"
       {...props}
       onClick={() => googleLoginHandler()}

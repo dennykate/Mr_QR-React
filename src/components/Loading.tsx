@@ -1,12 +1,15 @@
 import LoadingVideo from "../assets/loading.mp4";
 
-const Loading = () => {
+interface PropsType {
+  height?: string;
+}
+
+const Loading = ({ height }: PropsType) => {
   return (
     <div
       style={{
-        maxWidth: 200,
-        width: 200,
-        height: 200,
+        width: "100%",
+        height: height ?? "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

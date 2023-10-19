@@ -29,8 +29,7 @@ const QrCardContainer = () => {
 
     setTotal(data.total);
     setData((prev) => {
-      console.log(prev);
-      return [...prev, ...data.data]
+      return [...prev, ...data.data];
     });
   };
 

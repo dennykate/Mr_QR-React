@@ -16,9 +16,10 @@ import config from "../constants/config";
 import { Loading, QrUpload } from ".";
 import uploadImage from "../libs/uploadImage";
 import { selectData } from "../constants";
-import { createQrUrl } from "../libs/functions";
 import useQuery from "../hooks/useQuery";
 import useAccessToken from "../hooks/useAccessToken";
+
+import Logo from "../assets/logo.jpg";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -53,6 +54,17 @@ const useStyles = createStyles((theme) => ({
     "&:hover": {
       background: theme.colorScheme === "dark" ? "" : config.lightFontColor,
     },
+  },
+  logoContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 4,
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    objectFit: "cover",
   },
 }));
 
@@ -151,10 +163,13 @@ const QrBox = () => {
         setOpenModal={setOpenModal}
       />
 
-      <Title className={classes.title}>Mini QR Generator</Title>
+      <div className={classes.logoContainer}>
+        <img src={Logo} alt="logo" className={classes.logo} />
+        <Title className={classes.title}>MR QR</Title>
+      </div>
 
       {loading ? (
-        <Loading />
+        <Loading height="200px" />
       ) : (
         qrCode && (
           <QRCode

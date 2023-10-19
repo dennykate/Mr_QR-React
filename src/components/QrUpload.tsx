@@ -97,7 +97,7 @@ const QrUpload = ({ upload, openModal, setOpenModal }: QrUploadProps) => {
         {upload.isSuccess ? (
           <img src={upload.qrCode} className={classes.qrBox} />
         ) : (
-          <Loading />
+          <Loading height="200px" />
         )}
 
         {upload.isSuccess && (
