@@ -17,9 +17,9 @@ const Footer = () => {
 
   return (
     <div className={classes.container}>
-      <p>
-        Developed by <Link to="">Denny Kate</Link> &{" "}
-        <Link to="">Thwe Thwe</Link> © 2023 Mr.QR
+      <p style={{ textAlign: "center" }}>
+        Developed by <Link to="https://github.com/dennykate">Denny Kate</Link> &{" "}
+        <Link to="https://github.com/eiThwe">Thwe Thwe</Link> © 2023 Mr.QR
       </p>
     </div>
   );

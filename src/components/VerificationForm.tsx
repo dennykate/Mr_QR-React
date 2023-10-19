@@ -90,7 +90,7 @@ export default function VerificationForm() {
   return (
     <Container size={500} my={30}>
       <Title className="title" ta="center">
-        Verify Your Account!!!
+        Verify Your Account!
       </Title>
       <Text c="dimmed" fz="sm" ta="center">
         Enter your {type} to get a verification code

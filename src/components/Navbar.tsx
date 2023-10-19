@@ -68,7 +68,7 @@ const Navbar = () => {
         </Link>
 
         <div className={classes.inputContainer}>
-          <Input
+          {/* <Input
             placeholder="Search"
             mr={5}
             rightSection={
@@ -76,7 +76,7 @@ const Navbar = () => {
                 <IconSearch size={18} />
               </Button>
             }
-          />
+          /> */}
           <Button onClick={() => toast.error("Unavailable")} size="sm" mr={5}>
             Get Mobile App
           </Button>
