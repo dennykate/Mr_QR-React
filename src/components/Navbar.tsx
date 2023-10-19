@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
-import { Button, Input, createStyles } from "@mantine/core";
+import { Button, createStyles } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { IconLogout, IconSearch } from "@tabler/icons-react";
+import { IconLogout } from "@tabler/icons-react";
 import Logo from "../assets/logo.jpg";
 
 const useStyles = createStyles(() => ({
